@@ -1,35 +1,86 @@
-// Example: Toggle visibility of a modal
-function toggleModal() {
-    const modal = document.getElementById('myModal');
-    modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+// Updated scripts.js with reply script
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listeners when the DOM is fully loaded
+    setupEventListeners();
+});
+
+function setupEventListeners() {
+    // Attach event listeners for like buttons, reply buttons, and submit reply buttons
+    attachLikeButtonListeners();
+    attachReplyButtonListeners();
+    attachSubmitReplyButtonListeners();
 }
 
-// Example: Handle navigation
-function navigateToPage(pageId) {
-    // Logic to hide current page and show the selected page
-}
-// Example: Form validation and submission
-function validateAndSubmitForm() {
-    // Validate form fields
-    // If valid, submit form using AJAX
-}
-// Example: Fetch and display forum posts using AJAX
-function fetchAndDisplayPosts() {
-    // Use AJAX to fetch posts from the server
-    // Update the HTML to display the fetched posts
-}
-// Example: User authentication handling
-function loginUser() {
-    // Validate credentials and log in
-    // Update UI based on authentication status
+function attachLikeButtonListeners() {
+    // Example: Attach event listeners for like buttons
+    document.getElementById('likeButton1').addEventListener('click', function () {
+        handleLikeButtonClick(1);
+    });
+
+    document.getElementById('likeButton2').addEventListener('click', function () {
+        handleLikeButtonClick(2);
+    });
+
+    // Add more as needed
 }
 
-function logoutUser() {
-    // Log out the user
-    // Update UI based on authentication status
+function handleLikeButtonClick(postId) {
+    // Example: Handle the like button click for the specified post
+    console.log('Like button clicked for post:', postId);
+
+    // You can implement AJAX logic here to update the like count on the server
 }
-// Example: AJAX request to post a new thread
-function postNewThread(threadData) {
-    // Send an AJAX request to the server to post a new thread
-    // Update the UI after successful submission
+
+function attachReplyButtonListeners() {
+    // Example: Attach event listeners for reply buttons
+    document.getElementById('replyButton1').addEventListener('click', function () {
+        toggleReplyWindow(1);
+    });
+
+    document.getElementById('replyButton2').addEventListener('click', function () {
+        toggleReplyWindow(2);
+    });
+
+    // Add more as needed
+}
+
+function toggleReplyWindow(postId) {
+    // Example: Toggle the visibility of the reply window for the specified post
+    const replyWindow = document.getElementById(`replyWindow${postId}`);
+    if (replyWindow.style.display === 'none' || replyWindow.style.display === '') {
+        replyWindow.style.display = 'block';
+    } else {
+        replyWindow.style.display = 'none';
+    }
+}
+
+function attachSubmitReplyButtonListeners() {
+    // Example: Attach event listeners for submit reply buttons
+    document.getElementById('submitReplyButton1').addEventListener('click', function () {
+        submitReply(1);
+    });
+
+    document.getElementById('submitReplyButton2').addEventListener('click', function () {
+        submitReply(2);
+    });
+
+    // Add more as needed
+}
+
+function submitReply(postId) {
+    // Example: Handle the submission of a reply for the specified post
+    const replyTextarea = document.getElementById(`replyTextarea${postId}`);
+    const replyContent = replyTextarea.value.trim();
+
+    if (replyContent !== '') {
+        // You can implement AJAX logic here to submit the reply to the server
+        console.log(`Reply submitted for post ${postId}:`, replyContent);
+
+        // Clear the textarea after submission
+        replyTextarea.value = '';
+
+        // Optionally, hide the reply window
+        toggleReplyWindow(postId);
+    }
 }
